@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Tell Me A Story</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container-fluid mt-3">
+    <div class="row d-flex flex-column align-items-center">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+        <fieldset>
+          <form action="/" method="post">
+            <input class="btn btn-primary"
+                  type="submit"
+                  value="Tell Me A Story">
+          </form>
+        </fieldset>
+      </div>
+    </div>
+    <div class="row d-flex flex-column align-items-center">
+      <div class="col-md-2"></div>
+      <div class="col-sm-12 col-md-8">
+          <p><%= threadTitle %></p>
+          <% if (comments !== null) { 
+            comments.forEach(function(comment) { %>
+              <div class="jumbotron"><%- comment %></div>
+            <% });
+          } %>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+</body>
+</html>

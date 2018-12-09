@@ -1,7 +1,6 @@
 const snoowrap = require("snoowrap");
 const express = require("express");
 const app = express();
-// const bodyParser = require("body-parser");
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").load();
 }
@@ -10,7 +9,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 const r = new snoowrap({
   userAgent: "read-me-a-story",
-  clientId: "iOU5tebeB2brrg",
+  clientId: process.env.REDDIT_CLIENT_ID,
   clientSecret: process.env.REDDIT_CLIENT_SECRET,
   refreshToken: process.env.REDDIT_REFRESH_TOKEN
 });

@@ -6,8 +6,12 @@ body {
 
 .container-fluid {
   height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+
+@media (max-width: 767.98px) {
+  p {
+    font-size: 5rem;
+  }
 }

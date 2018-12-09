@@ -9,14 +9,26 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="container-fluid mt-3">
+  <div class="container-fluid h-100">
   <% if (threadTitle === null) { %>
-    <div class="row">
-      <div class="col-xs-3"></div>
-      <div class="col-xs-6">
+    <div class="row h-100 align-items-center justify-content-center">
+      <div class="col-xs-12">
         <fieldset>
           <form action="/" method="post">
             <input class="btn btn-primary"
+                  type="submit"
+                  value="Tell Me A Story">
+          </form>
+        </fieldset>
+      </div>
+    </div>
+     <% } %>
+     <% if (threadTitle !== null) { %>
+    <div class="row justify-content-end">
+      <div class="col-xs-12">
+        <fieldset>
+          <form action="/" method="post">
+            <input class="btn btn-primary" style="margin: 1rem;"
                   type="submit"
                   value="Tell Me A Story">
           </form>

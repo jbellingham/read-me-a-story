@@ -25,7 +25,7 @@ app.post("/", function(req, res) {
     .getHot({ limit: 1 })
     .filter(_ => _.stickied === false)
     .forEach(function(val) {
-      threadTitle = val.title;
+      threadTitle = val.title.replace("[WP]", "");
       console.log(val.title);
       console.log(val.comments.length);
 

@@ -2,14 +2,15 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>Tell Me A Story</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="container-fluid h-100">
+  <div class="container-fluid">
   <% if (threadTitle === null) { %>
     <div class="row h-100 align-items-center justify-content-center">
       <div class="col-xs-12">
@@ -24,11 +25,11 @@
     </div>
      <% } %>
      <% if (threadTitle !== null) { %>
-    <div class="row justify-content-end">
+    <div class="row w-100 justify-content-end">
       <div class="col-xs-12">
         <fieldset>
           <form action="/" method="post">
-            <input class="btn btn-primary" style="margin: 1rem;"
+            <input class="btn btn-primary" style="margin: 1rem -1rem;"
                   type="submit"
                   value="Tell Me A Story">
           </form>
@@ -37,8 +38,8 @@
     </div>
      <% } %>
     <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-xs-12 col-md-8">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-8 col-md-8 col-sm-12">
           <p><%= threadTitle %></p>
           <% if (comments !== null) { 
             comments.forEach(function(comment) { %>
@@ -46,7 +47,7 @@
             <% });
           } %>
       </div>
-      <div class="col-md-2"></div>
+      <div class="col-lg-2"></div>
     </div>
   </div>
 </body>

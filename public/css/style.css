@@ -3,9 +3,3 @@ body {
   height: 100%;
   background-color: #f2f3f4;
 }
-
-@media (max-width: 575.98px) {
-  p {
-    font-size: 5rem;
-  }
-}

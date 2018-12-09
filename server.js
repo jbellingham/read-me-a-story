@@ -8,8 +8,6 @@ if (process.env.NODE_ENV !== "production") {
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-// app.use(bodyParser.urlencoded({ extended: true }));
-console.log(process.env);
 const r = new snoowrap({
   userAgent: "read-me-a-story",
   clientId: "iOU5tebeB2brrg",
@@ -49,6 +47,4 @@ app.post("/", function(req, res) {
     });
 });
 
-app.listen(process.env.PORT || 5000, function() {
-  console.log("Example app listening on port 3000");
-});
+app.listen(process.env.PORT || 5000);

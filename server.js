@@ -35,7 +35,12 @@ app.post("/", function(req, res) {
       val.expandReplies({ depth: 1, limit: 1 }).then(function(sub) {
         console.log(sub.comments.length);
         var comments = sub.comments
-          .filter(_ => !_.stickied && !_.removed)
+          .filter(
+            _ =>
+              !_.stickied &&
+              (!_.body.includes("[removed]") || !_.removed) &&
+              !_.body.toLowerCase().includes("i'm a bot")
+          )
           .sort(function(a, b) {
             return a.ups > b.ups;
           })

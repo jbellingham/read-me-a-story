@@ -61,10 +61,8 @@
           <% if (comment !== null && threadLink !== null) { %>
               <div class="jumbotron">
                 <%- comment.text %>
-                <p>
-                  <span class="text-left"><a target="_blank" href="https://reddit.com<%- threadLink %><%- comment.link %>">Source</a></span>
-                  <span class="text-right">Short story by - <a target="_blank" href="https://reddit.com/u/<%- comment.author %>"><%- comment.author %></a></span>
-                </p>
+                  <p class="text-right">Short story by - <a target="_blank" href="https://reddit.com/u/<%- comment.author %>"><%- comment.author %></a></p>
+                  <p class="text-right"><a target="_blank" href="https://reddit.com<%- threadLink %><%- comment.link %>">Source</a></p>
               </div>
             <% } %>
       </div>

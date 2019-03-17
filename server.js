@@ -18,47 +18,46 @@ app.get("/", function(req, res) {
   res.render("index", { threadTitle: null, comment: null, threadLink: null });
 });
 
-app.post("/", function(req, res) {
-  console.log("post");
+app.post("/", async function(req, res) {
   let threadTitle = "";
   let threadLink = "";
 
-  r.getSubreddit("writingprompts")
-    .getHot({ limit: 1 })
-    .filter(_ => !_.stickied && _.num_comments >= 5)
-    .forEach(function(val) {
-      threadTitle = val.title.replace("[WP]", "");
-      threadLink = val.permalink;
-      console.log(val.title);
-      console.log(val.comments.length);
+  let posts = await r
+    .getSubreddit("writingprompts")
+    .getHot({ limit: 20 })
+    .filter(_ => !_.stickied && _.num_comments >= 5);
 
-      val.expandReplies({ depth: 1, limit: 1 }).then(function(sub) {
-        console.log(sub.comments.length);
-        var comments = sub.comments
-          .filter(
-            _ =>
-              !_.stickied &&
-              (!_.body.includes("[removed]") || !_.removed) &&
-              !_.body.toLowerCase().includes("i'm a bot")
-          )
-          .sort(function(a, b) {
-            return a.ups > b.ups;
-          })
-          .map(function(comment) {
-            return {
-              text: comment.body_html,
-              link: comment.id,
-              author: comment.author.name
-            };
-          });
-        var comment = comments[Math.floor(Math.random() * comments.length)];
-        res.render("index", {
-          threadTitle: threadTitle,
-          comment: comment,
-          threadLink: threadLink
-        });
+  let val = posts[Math.floor(Math.random() * posts.length)];
+  threadTitle = val.title.replace("[WP]", "");
+  threadLink = val.permalink;
+
+  val.expandReplies({ depth: 1, limit: 1 }).then(function(sub) {
+    console.log(sub.comments.length);
+    var comments = sub.comments
+      .filter(
+        _ =>
+          !_.stickied &&
+          (!_.body.includes("[removed]") || !_.removed) &&
+          !_.body.toLowerCase().includes("i'm a bot")
+      )
+      .sort(function(a, b) {
+        return a.ups > b.ups;
+      })
+      .map(function(comment) {
+        return {
+          text: comment.body_html,
+          link: comment.id,
+          author: comment.author.name
+        };
       });
+    var comment = comments[Math.floor(Math.random() * comments.length)];
+    res.render("index", {
+      threadTitle: threadTitle,
+      comment: comment,
+      threadLink: threadLink
     });
+  });
+  // });
 });
 
 app.listen(process.env.PORT || 5000);
